@@ -1,8 +1,8 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-#FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
-#WORKDIR /app
-#EXPOSE 80
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
 
 #FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 #WORKDIR /src
@@ -20,7 +20,7 @@
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "MyFirstWebApi.dll"]
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:5.0 AS build-env
 
 WORKDIR /app
 
@@ -38,7 +38,7 @@ RUN dotnet publish -c Release -o out
 
 # Build runtime image
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+FROM mcr.microsoft.com/dotnet/core/aspnet:5.0
 
 WORKDIR /app
 
