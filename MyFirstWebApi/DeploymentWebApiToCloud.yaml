@@ -1,0 +1,105 @@
+﻿#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: webapivaluesservice-deployment
+#  labels:
+#    app: WebApiValuesService
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: WebApiValuesService
+#  template:
+#    metadata:
+#      labels:
+#        app: WebApiValuesService
+#    spec:
+#      containers:
+#        - name: webapivaluesservice
+#          image: myazcr.azurecr.io/webapivaluesserviceimage:latest
+#          ports:
+#            - containerPort: 8080
+#          imagePullSecrets:
+#        - name: webapisvcsecret     
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: webapivaluesservicesvc
+#spec:
+#    type: LoadBalancer
+#    ports:
+#    - port: 80
+#    selector:
+#      app: WebApiValuesService
+
+
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: webapivaluesservice
+#  labels:
+#    app: webapivaluesservice
+#spec:
+#  replicas: 1
+#  selector:
+#    matchLabels:
+#      app: webapivaluesservice
+#  template:
+#    metadata:
+#      labels:
+#        app: webapivaluesservice
+#    spec:
+#      containers:
+#      - name: webapivaluesservice
+#        image: myazcr.azurecr.io/webapivaluesserviceimage:latest
+#        ports:
+#        - containerPort: 80
+#      imagePullSecrets:
+#      - name: webapisvcsecret
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: webapivaluesservice-service
+#spec:
+# type: LoadBalancer
+# ports:
+# - port: 80
+# selector:
+#   app: webapivaluesservice
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myfirstwebapi
+  labels:
+    app: myfirstwebapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myfirstwebapi
+  template:
+    metadata:
+      labels:
+        app: myfirstwebapi
+    spec:
+      containers:
+      - name: myfirstwebapi
+        image: mywebapicontainerregistry.azurecr.io/myfirstwebapiimage:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: myfirstwebapisecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myfirstwebapi-service
+spec:
+ type: LoadBalancer
+ ports:
+ - port: 80
+ selector:
+   app: myfirstwebapi
