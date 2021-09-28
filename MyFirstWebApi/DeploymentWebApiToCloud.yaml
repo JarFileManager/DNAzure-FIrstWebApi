@@ -87,7 +87,7 @@ spec:
     spec:
       containers:
       - name: myfirstwebapi
-        image: mywebapicontainerregistry.azurecr.io/myfirstwebapiimage:latest
+        image: myfirstwebapicontainer.azurecr.io/myfirstwebapiimage:latest
         ports:
         - containerPort: 80
       imagePullSecrets:
